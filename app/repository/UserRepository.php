@@ -1,6 +1,6 @@
 <?php
 
-namespace App\rephsitory;
+namespace App\repository;
 
 class UserRepository
 {
@@ -8,7 +8,7 @@ class UserRepository
     public function createUser($nom, $password, $id_type_user)
     {
         // 1. Vérifier si l'utilisateur existe déjà
-        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE nom = :nom');
+        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE nom = :nom');
         $stmt->execute(['nom' => $nom]);
 
         if ($stmt->fetch()) {
@@ -17,7 +17,7 @@ class UserRepository
 
         // 2. Créer le nouvel utilisateur
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $this->pdo->prepare('INSERT INTO users (nom, password, id_type_user) VALUES (:nom, :password, :id_type_user)');
+        $stmt = $this->pdo->prepare('INSERT INTO user (nom, password, id_type_user) VALUES (:nom, :password, :id_type_user)');
         return $stmt->execute([
             'nom' => $nom,
             'password' => $hashedPassword,
@@ -32,24 +32,24 @@ class UserRepository
 
     public function findAllUSers()
     {
-        $stmt = $this->pdo->query('SELECT * FROM users');
+        $stmt = $this->pdo->query('SELECT * FROM user');
         return $stmt->fetchAll();
     }
     public function findUserById($id)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE id = :id');
+        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE id = :id');
         $stmt->execute(['id' => $id]);
         return $stmt->fetch();
     }
     public function findAdminUser()
     {
-        $stmt = $this->pdo->query('SELECT * FROM users WHERE id_type_user = 1 LIMIT 1');
+        $stmt = $this->pdo->query('SELECT * FROM user WHERE id_type_user = 1 LIMIT 1');
         return $stmt->fetch();
     }
     public function verifyIfUserExists($nom, $password)
     {
         // 1. Chercher l'utilisateur par son nom
-        $stmt = $this->pdo->prepare('SELECT * FROM users WHERE nom = :nom');
+        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE nom = :nom');
         $stmt->execute(['nom' => $nom]);
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -61,6 +61,7 @@ class UserRepository
 
         return false; // utilisateur inexistant ou mauvais mot de passe
     }
+    
     
 
 

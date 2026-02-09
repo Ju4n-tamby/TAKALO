@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: #f4f6f8;
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+/* Carte principale */
+.login-container {
+background: #ffffff;
+padding: 45px 40px;
+border-radius: 10px;
+width: 100%;
+max-width: 380px;
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+border: 1px solid #e5e7eb;
+}
+
+.login-container h1 {
+text-align: center;
+margin-bottom: 30px;
+color: #111827;
+font-size: 24px;
+font-weight: 600;
+}
+
+/* Formulaire */
+form {
+display: flex;
+flex-direction: column;
+gap: 18px;
+}
+
+input {
+padding: 12px 14px;
+border: 1px solid #d1d5db;
+border-radius: 6px;
+font-size: 15px;
+background: #f9fafb;
+transition: all 0.2s ease;
+}
+
+input:focus {
+outline: none;
+border-color: #2563eb;
+background: #ffffff;
+}
+
+/* Bouton */
+button {
+padding: 12px;
+background: #111827;
+color: #ffffff;
+border: none;
+border-radius: 6px;
+font-size: 15px;
+font-weight: 600;
+cursor: pointer;
+transition: background 0.2s ease;
+}
+
+button:hover {
+background: #1f2933;
+}
+
+/* Footer */
+.login-footer {
+text-align: center;
+margin-top: 20px;
+}
+
+.login-footer a {
+color: #2563eb;
+text-decoration: none;
+font-size: 14px;
+font-weight: 500;
+}
+
+.login-footer a:hover {
+text-decoration: underline;
+}

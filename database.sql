@@ -13,5 +13,12 @@ CREATE TABLE user(
     FOREIGN KEY (id_type_user) REFERENCES type_user(id_type_user)
 );
 
+CREATE TABLE category(
+    id_category INT PRIMARY KEY AUTO_INCREMENT,
+    libelle VARCHAR(50) NOT NULL UNIQUE
+);
+
 INSERT INTO type_user (nom_type_user) VALUES ('admin'), ('user');
 INSERT INTO user (username, password, id_type_user) VALUES ('admin', 'adminpassword', 1), ('user1', 'user1password', 2);
+
+INSERT INTO category (libelle) VALUES ('Electronics'), ('Books'), ('Clothing');

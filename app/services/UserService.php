@@ -21,6 +21,10 @@ class UserService
     {
         return $this->userRepository->findAdminUser();
     }
+    public function authenticate($username, $password)
+    {
+        return $this->userRepository->verifyIfUserExists($username, $password);
+    }
 
    
 }

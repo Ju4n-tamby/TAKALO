@@ -131,10 +131,10 @@
             </div>
         <?php endif; ?>
 
-        <form action="/home" method="post">
+        <form action="/log" method="post">
             <input type="text" name="username" placeholder="Username" 
                    value="<?= isset($adminUser) ? htmlspecialchars($adminUser['username']) : '' ?>" required>
-            <input type="password" name="password" placeholder="Password" required value="<?= isset($adminUser) ? 'admin' : '' ?>">
+            <input type="password" name="password" placeholder="Password" required value="<?= isset($adminUser) ? htmlspecialchars($adminUser['password']) : '' ?>">
             <button type="submit">Login</button>
         </form>
         <div class="login-footer">

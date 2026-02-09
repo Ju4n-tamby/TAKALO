@@ -1,0 +1,50 @@
+/* Header principal */
+.main-header {
+    width: 100%;
+    height: 60px;
+    background: #111827;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logo {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Navigation */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+/* Lien admin */
+.admin-link {
+    background: #2563eb;
+    padding: 8px 14px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.admin-link:hover {
+    background: #1d4ed8;
+}

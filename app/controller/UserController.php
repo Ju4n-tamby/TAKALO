@@ -22,6 +22,23 @@ class UserController
             Flight::render('login', ['adminUser' => $adminUser]);
         }
     }
+    public function login()
+    {
+        $username = Flight::request()->data->username;
+        $password = Flight::request()->data->password;
+
+        $user = $this->userService->authenticate($username, $password);
+        if ($user) {
+            // Authentification réussie
+            
+            $_SESSION['user'] = $user;
+            Flight::render('home' , ['user' => $user]);
+        } else {
+            // Échec de l'authentification
+            $errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
+            Flight::render('login', ['error' => $errorMessage]);
+        }
+    }
 
 
 }

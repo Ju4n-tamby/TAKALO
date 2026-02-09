@@ -49,19 +49,19 @@ class UserRepository
     public function verifyIfUserExists($nom, $password)
     {
         // 1. Chercher l'utilisateur par son nom
-        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE nom = :nom');
-        $stmt->execute(['nom' => $nom]);
+        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE username = :username');
+        $stmt->execute(['username' => $nom]);
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         // 2. Vérifier le mot de passe
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user && isset($user['password']) && $password == $user['password']) {
             return $user; // utilisateur trouvé et mot de passe correct
         }
 
         return false; // utilisateur inexistant ou mauvais mot de passe
     }
-    
+  
     
 
 

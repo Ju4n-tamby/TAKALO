@@ -28,3 +28,4 @@ $userController = new UserController($userService);
 
 // Define routes
 Flight::route('GET /', [$userController, 'showLoginForm']);
+Flight::route('POST /log', [$userController, 'login']);            

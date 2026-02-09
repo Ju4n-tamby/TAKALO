@@ -6,7 +6,7 @@ CREATE TABLE type_user(
     nom_type_user VARCHAR(50) NOT NULL
 );
 CREATE TABLE user(
-    id_utilisateur INT PRIMARY KEY AUTO_INCREMENT,
+    id_user INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     id_type_user INT,

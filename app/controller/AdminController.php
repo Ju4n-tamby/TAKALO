@@ -13,12 +13,12 @@ class AdminController
     public function showAdminDashboard()
     {
         // Vérifier si l'utilisateur est connecté et est un admin
-        if (isset($_SESSION['user']) && $this->userService->verifyIfUserIsAdminById($_SESSION['user']['id_utilisateur'])) {
+        if (isset($_SESSION['user']) && $this->userService->verifyIfUserIsAdminById($_SESSION['user']['id_user'])) {
             // Afficher le tableau de bord admin
             Flight::render('adminSpace');
         } else {
             // Rediriger vers la page de connexion si l'utilisateur n'est pas un admin
-            Flight::redirect('/home');
+            Flight::render('home');
         }
     }
 

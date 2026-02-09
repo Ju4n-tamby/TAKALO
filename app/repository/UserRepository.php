@@ -63,8 +63,8 @@ class UserRepository
     }
     public function verifyIfUserIsAdminById($id)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE id_utilisateur = :id_utilisateur AND id_type_user = 1');
-        $stmt->execute(['id_utilisateur' => $id]);
+        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE id_user = :id_user AND id_type_user = 1');
+        $stmt->execute(['id_user' => $id]);
         return $stmt->fetch();
     }
   

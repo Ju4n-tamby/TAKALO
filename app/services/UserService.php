@@ -25,6 +25,10 @@ class UserService
     {
         return $this->userRepository->verifyIfUserExists($username, $password);
     }
+    public function verifyIfUserIsAdminById($id)
+    {
+        return $this->userRepository->verifyIfUserIsAdminById($id);
+    }
 
    
 }

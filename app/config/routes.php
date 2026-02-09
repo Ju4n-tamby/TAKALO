@@ -9,6 +9,7 @@ use flight\net\Router;
 use App\services\UserService;
 use App\controller\UserController;
 use App\repository\UserRepository;
+use App\controller\AdminController;
 
 
 
@@ -25,7 +26,10 @@ $pdo = Flight::db();
 $userRepository = new UserRepository($pdo);
 $userService = new UserService($userRepository);
 $userController = new UserController($userService);
+$adminController = new AdminController($userService);
+
 
 // Define routes
 Flight::route('GET /', [$userController, 'showLoginForm']);
-Flight::route('POST /log', [$userController, 'login']);            
+Flight::route('POST /log', [$userController, 'login']);     
+Flight::route('GET /admin', [$adminController, 'showAdminDashboard']);       

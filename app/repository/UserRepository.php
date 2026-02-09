@@ -61,6 +61,12 @@ class UserRepository
 
         return false; // utilisateur inexistant ou mauvais mot de passe
     }
+    public function verifyIfUserIsAdminById($id)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM user WHERE id_utilisateur = :id_utilisateur AND id_type_user = 1');
+        $stmt->execute(['id_utilisateur' => $id]);
+        return $stmt->fetch();
+    }
   
     
 

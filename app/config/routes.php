@@ -46,3 +46,4 @@ Flight::route('GET /admin/categories/delete/@id', [$adminController, 'deleteCate
 Flight::route('POST /admin/category/new', [$adminController, 'createCategory']);
 Flight::route('GET /admin/categories/edit/@id', [$adminController, 'showFormEditCategory']);
 Flight::route('POST /admin/categories/edit/@id', [$adminController, 'updateCategory']);
+Flight::route('GET /userList', [$adminController, 'getAllUsers']);

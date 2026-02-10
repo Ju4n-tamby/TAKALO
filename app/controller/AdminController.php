@@ -72,6 +72,12 @@ class AdminController
             Flight::render('home');
         }
     }
+    public function getAllUsers()
+    {
+        $users = $this->userService->getAllUsers();
+        Flight::render('UserList', ['users' => $users]);
+
+    }
 
 
 }

@@ -250,11 +250,15 @@
 </head>
 <body>
     <?php include __DIR__ . '/../../public/includes/header.php'; ?>
+
     
     <div class="container">
         <div class="admin-header">
             <h1>Gestion des Catégories</h1>
-            <a href="/admin/categories/create" class="add-btn">+ Ajouter une catégorie</a>
+            <div style="display: flex; gap: 10px;">
+                <a href="/userList" class="add-btn" style="background: #28a745;">👥 Liste des utilisateurs</a>
+                <a href="/admin/categories/create" class="add-btn">+ Ajouter une catégorie</a>
+            </div>
         </div>
 
         <?php if (isset($categories) && count($categories) > 0): ?>

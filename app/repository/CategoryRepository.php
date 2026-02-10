@@ -44,6 +44,14 @@ class CategoryRepository
         $stmt = $this->pdo->prepare('DELETE FROM category WHERE id_category = :id_category');
         return $stmt->execute(['id_category' => $id]);
     }
+    public function updateCategory($id, $libelle)
+    {
+        $stmt = $this->pdo->prepare('UPDATE category SET libelle = :libelle WHERE id_category = :id_category');
+        return $stmt->execute([
+            'libelle' => $libelle,
+            'id_category' => $id
+        ]);
+    }
     
 }
    

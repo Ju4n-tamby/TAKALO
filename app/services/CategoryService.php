@@ -30,6 +30,14 @@ class CategoryService
     {
         return $this->categoryRepository->deleteCategory($id);
     }
+    public function createCategoryIfNotExists($libelle)
+    {
+        return $this->categoryRepository->createCategory($libelle);
+    }
+    public function updateCategory($id, $libelle)
+    {
+        return $this->categoryRepository->updateCategory($id, $libelle);
+    }
 
 
 

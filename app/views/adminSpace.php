@@ -290,9 +290,9 @@
                             <a href="/admin/categories/edit/<?= $category['id_category'] ?? $category['id'] ?>" class="btn btn-edit">
                                 Modifier
                             </a>
-                            <button onclick="deleteCategory(<?= $category['id_category'] ?? $category['id'] ?>)" class="btn btn-delete">
+                            <a href="/admin/categories/delete/<?= $category['id_category'] ?? $category['id'] ?>" class="btn btn-delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?');">
                                 Supprimer
-                            </button>
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>

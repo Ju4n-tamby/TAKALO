@@ -26,6 +26,52 @@ class AdminController
             Flight::render('home');
         }
     }
+    public function showFormCategory()
+    {
+        if (isset($_SESSION['user']) && $this->userService->verifyIfUserIsAdminById($_SESSION['user']['id_user'])) {
+            Flight::render('FormCategory');
+        } else {
+            Flight::render('home');
+        }
+    }
+    public function deleteCategory($id)
+    {
+        if (isset($_SESSION['user']) && $this->userService->verifyIfUserIsAdminById($_SESSION['user']['id_user'])) {
+            $this->categoryService->deleteCategory($id);
+            Flight::redirect('/admin');
+        } else {
+            Flight::render('home');
+        }
+    }
+    public function createCategory()
+    {
+        if (isset($_SESSION['user']) && $this->userService->verifyIfUserIsAdminById($_SESSION['user']['id_user'])) {
+            $libelle = Flight::request()->data->libelle;
+            $this->categoryService->createCategoryIfNotExists($libelle);
+            Flight::redirect('/admin');
+        } else {
+            Flight::render('home');
+        }
+    }
+    public function showFormEditCategory($id)
+    {
+        if (isset($_SESSION['user']) && $this->userService->verifyIfUserIsAdminById($_SESSION['user']['id_user'])) {
+            $category = $this->categoryService->getCategoryById($id);
+            Flight::render('FormCategory', ['category' => $category]);
+        } else {
+            Flight::render('home');
+        }
+    }
+    public function updateCategory($id)
+    {
+        if (isset($_SESSION['user']) && $this->userService->verifyIfUserIsAdminById($_SESSION['user']['id_user'])) {
+            $libelle = Flight::request()->data->libelle;
+            $this->categoryService->updateCategory($id, $libelle);
+            Flight::redirect('/admin');
+        } else {
+            Flight::render('home');
+        }
+    }
 
 
 }

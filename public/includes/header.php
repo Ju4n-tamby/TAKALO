@@ -5,8 +5,9 @@
 
 ```
 <nav class="nav-links">
-    <a href="/">Accueil</a>
+    <a href="/home">Accueil</a>
     <a href="/admin" class="admin-link">Espace admin</a>
+    <a href="/deconnect">Déconnexion</a>
 </nav>
 ```
 

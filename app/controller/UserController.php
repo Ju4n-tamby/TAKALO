@@ -39,6 +39,22 @@ class UserController
             Flight::render('login', ['error' => $errorMessage]);
         }
     }
+    public function logout()
+    {
+        // Détruire la session utilisateur
+        session_destroy();
+        // Rediriger vers la page de connexion
+        Flight::redirect('/');
+    }
+    public function showHome()
+    {
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            Flight::render('home', ['user' => $user]);
+        } else {
+            Flight::redirect('/');
+        }
+    }
 
 
 }

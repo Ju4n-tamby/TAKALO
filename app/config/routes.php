@@ -38,4 +38,6 @@ $adminController = new AdminController($userService, $categoryService);
 // Define routes
 Flight::route('GET /', [$userController, 'showLoginForm']);
 Flight::route('POST /log', [$userController, 'login']);     
+Flight::route('GET /deconnect', [$userController, 'logout']);
+Flight::route('GET /home', [$userController, 'showHome']);
 Flight::route('GET /admin', [$adminController, 'showAdminDashboard']);       

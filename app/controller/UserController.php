@@ -5,9 +5,11 @@ use Flight;
 class UserController
 {
     private $userService;
-    public function __construct($userService)
+    private $objetService;
+    public function __construct($userService, $objetService)
     {
         $this->userService = $userService;
+        $this->objetService = $objetService;
     }
 
     public function showLoginForm()
@@ -32,7 +34,9 @@ class UserController
             // Authentification réussie
             
             $_SESSION['user'] = $user;
-            Flight::render('home' , ['user' => $user]);
+            $objets = $this->objetService->getObjetsByUserId($user['id_user']);
+
+            Flight::render('home' , ['user' => $user , 'objets' => $objets]);
         } else {
             // Échec de l'authentification
             $errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
@@ -50,7 +54,9 @@ class UserController
     {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
-            Flight::render('home', ['user' => $user]);
+            $objets = $this->objetService->getObjetsByUserId($user['id_user']);
+
+            Flight::render('home' , ['user' => $user , 'objets' => $objets]);
         } else {
             Flight::redirect('/');
         }

@@ -61,6 +61,15 @@ class ObjetRepository
         $stmt->execute(['id_user' => $id_user]);
         return $stmt->fetchAll();
     }
+
+    public function addImageToObjet($id_objet, $image_path)
+    {
+        $stmt = $this->pdo->prepare('UPDATE Objet SET image_path = :image_path WHERE id_objet = :id_objet');
+        return $stmt->execute([
+            'image_path' => $image_path,
+            'id_objet' => $id_objet
+        ]);
+    }
         
 
 }

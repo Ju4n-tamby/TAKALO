@@ -118,11 +118,34 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .objet-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .objet-image-wrapper {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .objet-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .objet-image-placeholder {
+            color: #999;
+            font-size: 14px;
         }
 
         .objet-header {
@@ -306,6 +329,13 @@
             <div class="objets-grid">
                 <?php foreach ($objets as $objet): ?>
                     <div class="objet-card">
+                        <div class="objet-image-wrapper">
+                            <?php if (isset($objet['images']) && count($objet['images']) > 0): ?>
+                                <img src="<?= htmlspecialchars($objet['images'][0]['url']) ?>" alt="<?= htmlspecialchars($objet['nom']) ?>" class="objet-image">
+                            <?php else: ?>
+                                <div class="objet-image-placeholder">📷 Pas d'image</div>
+                            <?php endif; ?>
+                        </div>
                         <div class="objet-header">
                             <div class="objet-name"><?= htmlspecialchars($objet['nom'] ?? 'Sans nom') ?></div>
                             <div class="objet-category">Catégorie ID: <?= htmlspecialchars($objet['id_category'] ?? 'N/A') ?></div>

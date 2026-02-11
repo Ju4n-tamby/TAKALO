@@ -15,6 +15,8 @@ use App\services\CategoryService;
 use App\services\ObjetService;
 use App\repository\ObjetRepository;
 use App\controller\ObjetController;
+use App\repository\ImageRepository;
+use App\services\ImageService;
 
 
 
@@ -32,14 +34,16 @@ $userRepository = new UserRepository($pdo);
 $userService = new UserService($userRepository);
 $categoryRepository = new CategoryRepository($pdo);
 $categoryService = new CategoryService($categoryRepository);
+$imageRepository = new ImageRepository($pdo);
+$imageService = new ImageService($imageRepository);
 $objetRepository = new ObjetRepository($pdo);
-$objetService = new ObjetService($objetRepository);
+$objetService = new ObjetService($objetRepository, $imageService);
 
 
 
 $userController = new UserController($userService, $objetService);
 $adminController = new AdminController($userService, $categoryService);
-$objetController = new ObjetController($objetService, $categoryService);
+$objetController = new ObjetController($objetService, $categoryService, $imageService);
 
 
 
@@ -62,3 +66,4 @@ Flight::route('POST /objets/create', [$objetController, 'createObjet']);
 Flight::route('GET /objets/edit/@id', [$objetController, 'showFormEdit']);
 Flight::route('POST /objets/edit/@id', [$objetController, 'updateObjet']);
 Flight::route('GET /objets/delete/@id', [$objetController, 'deleteObjet']);
+Flight::route('GET /objets/delete-image/@id', [$objetController, 'deleteImage']);

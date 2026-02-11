@@ -4,10 +4,12 @@ use App\repository\ObjetRepository;
 class ObjetService
 {
     private $objetRepository;
+    private $imageService;
 
-    public function __construct($objetRepository)
+    public function __construct($objetRepository, $imageService = null)
     {
         $this->objetRepository = $objetRepository;
+        $this->imageService = $imageService;
     }
 
     public function getAllObjets()
@@ -32,9 +34,21 @@ class ObjetService
     }
     public function getObjetsByUserId($id_user)
     {
-        return $this->objetRepository->findObjetsByUserId($id_user);
+        $objets = $this->objetRepository->findObjetsByUserId($id_user);
+        
+        // Load images for each object if imageService is available
+        if ($this->imageService && is_array($objets)) {
+            foreach ($objets as &$objet) {
+                $objet['images'] = $this->imageService->getImagesByObjet($objet['id_objet']);
+            }
+        }
+        
+        return $objets;
     }
-
+    public function addImageToObjet($id_objet, $image_path)
+    {
+        return $this->objetRepository->addImageToObjet($id_objet, $image_path);
+    }
 
 
 }

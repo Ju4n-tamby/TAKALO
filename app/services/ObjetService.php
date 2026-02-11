@@ -49,6 +49,24 @@ class ObjetService
     {
         return $this->objetRepository->addImageToObjet($id_objet, $image_path);
     }
+    public function getAllOtherObjets($id_user)
+    {
+        $objets = $this->objetRepository->findAllObjets();
+        
+        // Filter out objects that belong to the user
+        $otherObjets = array_filter($objets, function($objet) use ($id_user) {
+            return $objet['id_user'] != $id_user;
+        });
+        
+        // Load images for each object if imageService is available
+        if ($this->imageService && is_array($otherObjets)) {
+            foreach ($otherObjets as &$objet) {
+                $objet['images'] = $this->imageService->getImagesByObjet($objet['id_objet']);
+            }
+        }
+        
+        return $otherObjets;
+    }
 
 
 }

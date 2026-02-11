@@ -195,4 +195,19 @@ class ObjetController{
             unlink($filePath);
         }
     }
+    public function getAllOtherObjets()
+    {
+        if (!isset($_SESSION['user'])) {
+            Flight::redirect('/');
+            return;
+        }
+
+        $id_user = $_SESSION['user']['id_user'];
+        $objets = $this->objetService->getAllOtherObjets($id_user);
+        
+        // Get user's own objects for the exchange form
+        $myObjets = $this->objetService->getObjetsByUserId($id_user);
+        
+        Flight::render('AutreObjets', ['objets' => $objets, 'myObjets' => $myObjets, 'user' => $_SESSION['user']]);
+    }
 }

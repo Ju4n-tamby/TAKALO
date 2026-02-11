@@ -286,6 +286,7 @@
         <nav class="nav-links">
             <span class="user-info-header">👤 <?= htmlspecialchars($user['username'] ?? $user['nom'] ?? 'Utilisateur') ?></span>
             <a href="/home">Mes Objets</a>
+            <a href="/autre">Autre Objets</a>
             <a href="/echanges">Échanges</a>
             <?php if (isset($user) && ($user['id_type_user'] ?? 0) == 1): ?>
                 <a href="/admin">Admin</a>

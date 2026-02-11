@@ -67,3 +67,5 @@ Flight::route('GET /objets/edit/@id', [$objetController, 'showFormEdit']);
 Flight::route('POST /objets/edit/@id', [$objetController, 'updateObjet']);
 Flight::route('GET /objets/delete/@id', [$objetController, 'deleteObjet']);
 Flight::route('GET /objets/delete-image/@id', [$objetController, 'deleteImage']);
+Flight::route('GET /objets/autres', [$objetController, 'getAllOtherObjets']);
+Flight::route('GET /autre', [$objetController, 'getAllOtherObjets']);

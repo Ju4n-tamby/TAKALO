@@ -17,12 +17,7 @@ CREATE TABLE category(
     id_category INT PRIMARY KEY AUTO_INCREMENT,
     libelle VARCHAR(50) NOT NULL UNIQUE
 );
-CREATE TABLE image(
-    id_image INT PRIMARY KEY AUTO_INCREMENT,
-    url VARCHAR(255) NOT NULL,
-    id_objet INT,
-    FOREIGN KEY (id_objet) REFERENCES Objet(id_objet)
-);
+
 CREATE TABLE Objet(
     id_objet INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(100) NOT NULL,
@@ -32,6 +27,21 @@ CREATE TABLE Objet(
     id_user INT,
     FOREIGN KEY (id_category) REFERENCES category(id_category),
     FOREIGN KEY (id_user) REFERENCES user(id_user)
+);
+CREATE TABLE image(
+    id_image INT PRIMARY KEY AUTO_INCREMENT,
+    url VARCHAR(255) NOT NULL,
+    id_objet INT,
+    FOREIGN KEY (id_objet) REFERENCES Objet(id_objet)
+);
+
+CREATE TABLE Echange(
+    id_echange INT PRIMARY KEY AUTO_INCREMENT,
+    id_objet1 INT,
+    id_objet2 INT,
+    date_echange DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_objet1) REFERENCES Objet(id_objet),
+    FOREIGN KEY (id_objet2) REFERENCES Objet(id_objet)
 );
 
 INSERT INTO type_user (nom_type_user) VALUES ('admin'), ('user');

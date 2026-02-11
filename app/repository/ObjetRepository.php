@@ -13,13 +13,12 @@ class ObjetRepository
     }
     public function findAllObjets()
     {
-        $stmt = $this->pdo->query('SELECT * FROM Objet');
+        $stmt = $this->pdo->query('SELECT o.*, u.username FROM Objet o LEFT JOIN user u ON o.id_user = u.id_user');
         return $stmt->fetchAll();
     }
     public function findObjetById($id)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM Objet WHERE id_objet
-    = :id_objet');
+        $stmt = $this->pdo->prepare('SELECT o.*, u.username FROM Objet o LEFT JOIN user u ON o.id_user = u.id_user WHERE o.id_objet = :id_objet');
         $stmt->execute(['id_objet' => $id]);
         return $stmt->fetch();
     }
@@ -57,7 +56,7 @@ class ObjetRepository
 
     public function findObjetsByUserId($id_user)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM Objet WHERE id_user = :id_user');
+        $stmt = $this->pdo->prepare('SELECT o.*, u.username FROM Objet o LEFT JOIN user u ON o.id_user = u.id_user WHERE o.id_user = :id_user');
         $stmt->execute(['id_user' => $id_user]);
         return $stmt->fetchAll();
     }
@@ -69,6 +68,12 @@ class ObjetRepository
             'image_path' => $image_path,
             'id_objet' => $id_objet
         ]);
+    }
+    public function fintAllOtherObjets($id_user)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM Objet WHERE id_user != :id_user');
+        $stmt->execute(['id_user' => $id_user]);
+        return $stmt->fetchAll();
     }
         
 
